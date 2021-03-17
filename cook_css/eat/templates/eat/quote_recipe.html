@@ -1,0 +1,29 @@
+{% extends "base_list.html" %}
+{% load static %}
+{% load humanize %}　
+
+{% block body %}
+{% block profile %}
+{% endblock profile %}
+
+{% block edit %}
+{% endblock edit %}
+
+{% block object__header %}
+{{ block.super }}
+{% endblock object__header %}
+{% block object_content_and_icon %} 
+{{ block.super }}
+{% endblock object_content_and_icon %} 
+</div>
+
+<div class="form">
+    <div class="form__content">
+        <p>このレシピを参考にして作成しますか？</p>
+        <a class="button a_margin" href="{{request.META.HTTP_REFERER}}" role="button">戻る</a>
+        <a class="button a_margin" href="{% url 'eat:quote_create' object.id %}" role="button">作成</a>
+    </div>
+</div>
+
+
+{% endblock body %}

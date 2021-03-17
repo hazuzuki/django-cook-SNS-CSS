@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="detail">
+    <div class="detail__content">
+        <div class="title">編集</div>
+        <ul class="a-navy">
+            <li><a href="{% url 'signup:update' user.id %}" >ユーザー情報変更</a></li>
+            <li><a href="{% url 'signup:changepass' %}" >パスワード変更</a></li>
+            <li><a href="{% url 'signup:delete' user.id %}" >退会の手続き</a></li>
+        </ul>
+        <a class="button" href = "{{request.META.HTTP_REFERER}}">戻る</a>
+    </div>
+</div>
+
+{% endblock %}

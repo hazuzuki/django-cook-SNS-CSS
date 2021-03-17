@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="form create">
+    <div class="form__content">
+    <div>
+    　<h4>新規作成</h4>
+    </div>
+  <form method = "post" enctype="multipart/form-data">
+   {% csrf_token %}
+   <table>
+   {% for field in form %}
+   <tr>
+       <th>{{ field.label }}{% if field.field.required %} ※{% endif %}</th>
+       <td>{{ field }}</td>
+   </tr>
+  {% endfor %}
+</table>
+    <div>
+      <a class="button a_margin" href="{{request.META.HTTP_REFERER}}">戻る</a></button> 
+      <button type="submit">保存</button>
+    </div>
+  </form>
+  </div>
+</div>
+
+{% endblock %}

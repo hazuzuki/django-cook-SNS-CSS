@@ -1,0 +1,17 @@
+{% extends 'eat/recipe_timeline_list.html' %}
+{% load static %}
+{% load humanize %}
+
+
+
+{% block object %}
+{% if not object_list %}
+<div class="form">
+    <div class="form__content">
+        <p>該当する項目は、ありませんでした</p>
+    </div>
+</div>
+{% else %}
+{{ block.super }}
+{% endif %}
+{% endblock object %} 

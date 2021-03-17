@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+      <div class="home">
+        <div class="home__card">
+          <div class="home__img">
+            <img class="img-cook" src="{% static 'img/food-3048440_1280.jpg' %}" alt="">
+          </div>
+          <div class="home_container">
+            <h3 class="home_title">CooooK!は料理登録サイトです</h3>
+            <p class="home_description">レシピを検索してみよう</p>
+            <form class="home__search search" method = "get" action = "{% url 'eat:find' %}">
+              <input name="search" class="search__winddow" value = "{{ request.GET.search }}" placeholder="材料,料理名,種類"></input>
+              <button class="search__button"　type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

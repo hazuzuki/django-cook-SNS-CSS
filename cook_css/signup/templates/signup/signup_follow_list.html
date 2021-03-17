@@ -1,0 +1,52 @@
+{% extends "base_list.html" %}
+{% load static %}
+
+{% block body %}
+
+
+ {% block profile %}
+  {{ block.super }}
+ {% endblock profile %}
+
+
+
+
+<div class="follow_list">
+  {% for object in object_list %}
+  {% block follow_list %}
+ <div class="follow_list__content">
+   <div class="left">
+    {% if object.icon  %}
+      <img class="profile__img" src="{{ object.icon.url }}" class="rounded-circle " style="width: 100px;height: 100px;">
+    {% else %}
+      <img  class="profile__img" src="{% static 'img/illustration-2541681_1280.jpg' %}" class="rounded-circle " style="width: 100px;height: 100px;">
+    {% endif %}
+   </div>
+   <div class="right">
+     <div class="name">
+      {% if request.user.id == object.id %}
+      <a href = "{% url 'eat:index' %}">{{ object }}</a>
+      {% else %}
+      <a href = "{% url 'eat:users' object.id %}">{{ object }}</a>
+      {% endif %}
+     </div>
+     {% endblock follow_list %}
+     <div class="right_button">
+      {% if object == request.user %}
+      {% elif object in request.user.follow.all %}
+        <a class="button" href = "{% url 'signup:follow' users.id %}">フォロー中</a>
+      {% elif request.user in object.follow_request.all %}
+        <a class="button" href = "{% url 'signup:follow' users.id %}">フォロー許可待ち</a>
+      {% else %}
+        <a class="button" href = "{% url 'signup:follow' users.id %}">フォロー</a>
+      {% endif %}       
+     </div>
+   </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+
+{% endblock body %}

@@ -1,0 +1,88 @@
+{% extends "base_list.html" %}
+{% load static %}
+{% load humanize %}　
+
+{% block body %}
+
+{% block profile %}
+{{ block.super }}
+{% endblock profile %}
+
+
+{% if request.GET.deletes %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="selective_delection_button">
+            <a class="button" href="{% url 'eat:index' %}" role="button">戻る</a>
+            <button type="submit">消去</button>
+    </div>
+    {% block object__header %}
+    <div class="timeline selective_deletion"> 
+    {% endblock object__header %}   
+        {% for object in object_list %}
+        <div class= "checkbox">
+            <input type="checkbox" name="delete" value="{{ object.pk }}">
+        </div>
+        <div class="timeline__content">  
+            {% block object_content %}
+            {{ block.super }}
+            {% endblock object_content %}         
+        </div>
+</form>
+    {% endfor %}
+</div>
+
+
+{% elif not object_list and request.user.id == users.id %}
+<div class="form">
+    <div class="form__content">
+        <p>レシピを登録してみよう</p>
+    </div>
+</div>
+
+
+{% elif not object_list and request.user.id != users.id %}
+<div class="form">
+    <div class="form__content">
+        <p>投稿がありません</p>
+    </div>
+</div>
+ 
+
+{% elif object_list and not request.GET.deletes %}
+{% block edit %}
+{{ block.super }}
+{% endblock edit %}
+    <div class="mylist">
+        {% if users == request.user %}
+        {% if recipe_count >= 2 and not request.GET.deletes and object_list %}
+        <div class="mylist__edit">
+            <form action="" method="get">
+                <button name = "deletes" value = "deletes" class="btn btn-outline-success" type="submit">選択消去</button>
+            </form>
+        </div> 
+        {% endif %}       
+        {% endif %}
+
+
+        <div class="mylist__img">
+            {% for object in object_list %}
+                {% if object.photo %}
+                    <a href="{% url 'eat:detail' object.id %}">
+                        <img src="{{ object.photo.url }}">
+                    </a>
+                {% else %}
+                    <a href="{% url 'eat:detail' object.id %}">
+                        <img src="{% static 'img/smIMGL3647_TP_V.jpg' %}">
+                    </a>
+                {% endif %}
+            {% endfor %}              
+        </div>
+    </div>
+{% endif %}
+
+{% block pagination %}
+{{ block.super }}
+{% endblock pagination %}
+
+{% endblock %}

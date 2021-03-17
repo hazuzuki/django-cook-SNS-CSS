@@ -1,0 +1,158 @@
+{% extends "base_list.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block body %}
+
+{% if object.quote == "有り" and object.quote_recipe == None %}
+<div class="form">
+    <div class="form__content">
+        <p>参考にしたレシピは消去されました</p>
+    </div>
+</div>
+{% elif object.quote == "有り" %}
+<div class="quote__recipe">
+    <p>参考にしたレシピ</p>
+</div>
+<div class="timeline"> 
+        <div class="timeline__content">
+            <div class="recipe-detail__icon">
+                {% if object.user.icon  %}
+                <img  class="profile__img" src="{{ object.quote_recipe.user.icon.url }}">
+                {% else %}
+                <img class="profile__img" src="{% static 'img/illustration-2541681_1280.jpg' %}">
+                {% endif %}
+                <a href = "{% url 'eat:users' object.quote_recipe.user.id %}">{{ object.quote_recipe.user }}</a>
+            </div>    
+            <div class="timeline__inner">
+                <div class="title">
+                    <a href="{% url 'eat:detail' object.quote_recipe.id %}">{{ object.quote_recipe.recipe_name }}</a>
+                </div>
+                <div class="timeline-img">
+                    {% if object.photo %}
+                        <img src="{{ object.quote_recipe.photo.url }}">
+                    {% else %}
+                        <img src="{% static 'img/smIMGL3647_TP_V.jpg' %}">
+                    {% endif %}            
+                </div>
+                <div class="objects">
+                    <div class="p">
+                        <p>材料：{{ object.quote_recipe.ingredient }}</p>
+                        <p>種類：{{ object.quote_recipe.type }}</p> 
+                    </div>
+                    <div class="count">
+                        <div class="good">
+                            {% if request.user in object.quote_recipe.good_user.all %}
+                            <p><a href="{% url 'eat:good' object.quote_recipe.id %}"><span style="color:#FF0000">&hearts;</span></a>
+                            {% else %}
+                            <p><a href="{% url 'eat:good' object.quote_recipe.id %}"><span style="color:#FF0000">&#9825;</span></a>
+                            {% endif %}
+                            {{ object.quote_recipe.good_user.count }}
+                        </div>
+                        <div class="quote">
+                            <a href="{% url 'eat:quote_detail' object.quote_recipe.id %}">参考cook:</a> {{ object.quote_user.count }}
+                        </div>
+                    </div>
+                </div>
+                <div class="time">
+                    {{ object.quote_recipe.date | date:"Y/n/j"  }}
+                </div>
+            </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+
+
+
+<div class="recipe-detail">
+    <div class="recipe-detail__icon">
+        {% if object.user.icon  %}
+        <img  class="profile__img" src="{{ object.user.icon.url }}">
+        {% else %}
+        <img class="profile__img" src="{% static 'img/illustration-2541681_1280.jpg' %}">
+        {% endif %}
+        <a href = "{% url 'eat:users' object.user.id %}">{{ object.user }}</a>
+    </div>
+    <div class="recipe-detail__container">
+        {% if object.quote == "有り" %}
+        <div class="recipe-detail__content yellow">
+        {% else %}
+        <div class="recipe-detail__content">
+        {% endif %}
+            <div class="detail__img">
+                {% if object.photo %}
+                <img src="{{ object.photo.url }}" alt="">
+                {% else %}
+                <img src="{% static 'img/smIMGL3647_TP_V.jpg' %}">
+                {% endif %}
+            </div>
+            <div class="objects">
+                <div class="title">
+                    {{ object.recipe_name }}
+                </div>
+                {% if object.memo %}
+                <div class="memo">
+                    <div class="title">--memo--</div>
+                    <div class="content">{{ object.memo | linebreaksbr }}</div>
+                </div>
+                {% endif %}
+                <div class="p">
+                    <p>材料：{{ object.ingredient }}</p>
+                    <p>種類：{{ object.type }}</p>
+                </div>
+                {% if object.site %}
+                <div class="url">
+                    <p>参考サイト:</p><p>{{ object.site| truncatechars:50 | urlize }}</p>
+                </div>
+                {% endif %}
+                <div class="count">
+                    <div class="good">
+                        {% if request.user in object.good_user.all %}
+                        <p><a href="{% url 'eat:good' object.id %}"><span style="color:#FF0000">&hearts;</span></a>
+                        {% else %}
+                        <p><a href="{% url 'eat:good' object.id %}"><span style="color:#FF0000">&#9825;</span></a>
+                        {% endif %}
+                        {{ object.good_user.count }}&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div class="quote">
+                        {% if  object.quote == "有り" %}
+                        <!-- ログインユーザーと投稿者が同じ場合、Urlは表示しない-->
+                        {% elif request.user == object.user %}
+                        参考cook:{{ object.quote_user.count | intword }}
+                        {% else %}
+                        <!-- 自分の投稿じゃない場合と投稿自体が参考cookじゃない場合、urlにアクセス可能　-->
+                        <a href="{% url 'eat:quote_detail' object.id %}">参考cook:</a> {{ object.quote_user.count | intword }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <div class="recipe-detail__day">{{ object.date }}</div>
+        <div class="recipe-detail__button">
+             <a class="button a_margin" href = "{{request.META.HTTP_REFERER}}">戻る</a>
+             {% if request.user == object.user %}
+             <a class="button a_margin" href = "{% url 'eat:update' object.id %}">編集</a>
+             <a class="button a_margin" href="{% url 'eat:delete' object.id %}">消去</a> 
+             {% endif %}          
+        </div>
+    </div>    
+</div>
+
+
+
+
+
+{% if object_list %}
+<div class="quote__recipe quote__recipe_margin">
+    <p>このレシピの参考cook</p>
+</div>
+{% block object %}
+{{ block.super }}
+{% endblock object %}
+
+{% endif %}
+
+{% endblock %}

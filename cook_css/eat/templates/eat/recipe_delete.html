@@ -1,0 +1,19 @@
+
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="delete detail">
+    <div class="detail__content">
+        <div class="title">本当に消去してよろしいですか？</div>
+        <p>消去後は復元できません</p>
+        <form method = "post">
+            {% csrf_token %}
+            <a class="button" href="{% url 'eat:detail' object.id %}" >戻る</a>
+            <button type = "submit">消去</button>
+        </form>        
+    </div>
+</div>
+
+{% endblock %}

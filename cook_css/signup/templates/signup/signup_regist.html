@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="form">
+    <div class="form__content">
+        <div class="title">
+            <h4>登録フォーム</h4>
+        </div>
+        <table class="signup">
+            <tr>
+                <th class="regist"> 
+                    <label for="field.id_for_label">
+                        ユーザー名：
+                    </label>
+                </th>
+                <td>
+                    {{ form.cleaned_data.username }}
+                </td>
+            </tr>
+            <tr>
+                <th class="regist">                           
+                    <label for="field.id_for_label">
+                        メールアドレス：
+                    </label>
+                </th>
+                <td>
+                    {{ form.cleaned_data.email }}
+                </td>
+            </tr>
+            <tr>
+                <th class="regist">
+                    <label for="field.id_for_label">
+                        パスワード：
+                    </label>
+                </th>
+                <td>
+                    ******
+                </td>
+            </tr>
+        </table>
+    <form action = "" method = "post">
+      {% csrf_token %}
+    <table>
+      {% csrf_token %}
+      {% for field in form %}
+        {{field.as_hidden}}
+      {% endfor %}
+    </table>
+    <div>
+      <button name="next" value="back" type="submit">戻る</button>
+      <button name="next" value="regist" type="submit">登録</button>
+    </div>
+    </form>
+
+    </div>
+</div>
+
+{% endblock %}

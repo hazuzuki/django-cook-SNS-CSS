@@ -1,0 +1,39 @@
+{% extends "signup/signup_follow_list.html" %}
+{% load static %}
+
+
+{% block body %}
+
+{% block profile %}
+{{ block.super }}
+{% endblock profile %}
+
+{% if not request.user.follow_request.all %}
+
+  <div class="form follow_request">
+    <div class="form__content">
+      <div>
+        <p>現在<br>フォローリクエストは<br>ありません</p>
+      </div>
+    </div>
+  </div>
+
+{% else %}
+
+<div class="follow_list">
+  {% for object in object_list %}
+  {% block follow_list %}
+    {{ block.super }}
+  {% endblock follow_list %}
+     <div class="button">
+        <button type="button"><a href = "{% url 'signup:follow_permission' object.id %}">許可</a></button>
+        <button type="button"><a href = "{% url 'signup:follow_reject' object.id %}">拒否</a></button>     
+     </div>
+   </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endif %}
+
+{% endblock %}

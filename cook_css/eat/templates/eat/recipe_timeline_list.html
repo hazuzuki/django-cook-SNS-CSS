@@ -1,0 +1,11 @@
+{% extends 'base_list.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block profile %}
+{% endblock profile %}
+
+{% block edit_form %}  
+<form action = "{% url 'eat:timeline' %}" method = "get" class = "form-row">
+{% endblock edit_form %} 

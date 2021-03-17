@@ -1,0 +1,19 @@
+.form {
+    width: 40%;
+}
+
+.mylist {
+    width: 70%;
+}
+
+.profile {
+    width: 80%;
+}
+
+.header {
+    & .header__search { 
+        & > input {
+            width: 250px;
+        }
+    }
+}

@@ -1,0 +1,104 @@
+.header {
+    &__li {
+        width: 570px;
+
+        & > ul {
+            & > li {
+                display: block;
+            }
+        }
+    }
+
+    &__right {
+        text-align: end;
+        font-size: 0;
+        & > .mobile-menu_button {
+            display: none;
+        }
+    }
+
+    & .header__search {
+        display: block;
+
+        & input {
+            width: 66%;
+
+        }
+
+        & button {
+            padding: 6px;
+            margin-bottom: 0px;
+            float: right;
+        }
+        & > .search__winddow {
+            display: inline-block;
+        }
+    }
+
+    &__logout {
+        width: 200px;
+    }
+
+    &__bottom {
+        display: none;
+    }
+}
+
+.home {
+    width: 50%;
+}
+
+.form {
+    width: 500px;
+}   
+    
+
+.create {
+    table {
+        & > tbody {
+            & > tr {
+                & > th,
+                & > td {
+                    display: table-cell;
+                }
+                
+            }
+        }
+    }
+    textarea {
+        height: 250px;
+    }
+
+    textarea:focus {
+        height: 250px;
+    }
+    
+}
+
+.header {
+    &__search {
+        display: inline-flex;
+        
+        & > button {
+            margin: 0 0 -11px 0px;
+        }
+
+        & > input {
+            width: 300px;
+        }
+
+        
+    }
+}
+
+.profile {
+    &__content {
+        margin: 10px 100px 10px 100px;
+    }
+}
+
+// signup_detail.html
+.detail {
+    width: 500px;
+}
+

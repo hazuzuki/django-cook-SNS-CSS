@@ -1,0 +1,1169 @@
+.font-ssm {
+    font-size: 10px;
+  }
+
+.font-sm {
+    font-size: 14px;
+  }
+  .font-md {
+    font-size: 17px;
+  }
+  .font-lr {
+    font-size: 20px;
+  }
+  .font-lg {
+    font-size: 25px;
+  }
+  .mb-sm {
+    margin-bottom: 16px !important;
+  }
+  .mb-lg {
+    margin-bottom: 80px !important;
+  }
+  .pb-sm {
+    padding-bottom: 16px !important;
+  }
+  .pb-lg {
+    padding-bottom: 80px !important;
+  }
+  
+  .content-width {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+
+
+  .input {
+    border: 1px solid $cNaby;
+    height: 1.5em;
+    border-radius: 4px;
+    transition: 0.3s;
+  }
+
+  .input-focus {
+    border: 1px solid rgba(66, 91, 230, 1);
+    height: 1.5em;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 1px rgba(66, 91, 230, 1);  
+  }
+
+  .a-navy {
+    a {
+        text-decoration: none;
+        color: $cNaby;        
+    }
+
+    a:visited{
+        color: inherit;
+     }
+  }
+
+
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    // 元からあるマージンを初期化
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.home {
+    position: relative;
+    margin: 0 auto;
+    
+    &__card {
+        width: 90%;
+        margin: 0 auto;
+        max-width: 1982px;
+        display: flex;
+        flex-direction: column;
+        border: 0.25px solid;
+        border-color: $cNaby;
+        
+    }
+        
+
+    img {
+        object-fit: cover;
+        width: 100%;
+    }
+
+    &_container {
+        text-align: center;
+    }
+}
+
+.search {
+    display: flex;
+    flex-direction: colum;
+    justify-content: center;
+    margin-bottom: 25px;
+
+
+    &__winddow {
+        flex-basis: 50%;
+        height: 18px;
+        display: block;
+        border: 1.1px solid;
+        border-color: $cGray;
+        text-align: center; 
+        border-radius: 2px 0 0 2px;
+        overflow: hidden;
+        // 入力時の枠線を消す
+        outline:0;
+    }
+
+    &__button {
+        flex-basis: 20%;
+        height: 22px;
+        border: 1.1px solid;
+        cursor: pointer;
+        border-color: $cNaby;
+        color: $cNaby;
+        background-color: $cYellow;
+        transform: cursor;
+        margin: 0;
+        padding-top: 0;
+
+        
+        &:hover {
+            background-color: $cNaby;
+            color: $cYellow;
+            border-color: $cYellow;
+        }
+    }
+
+    &__header {
+        background-color: skyblue;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+
+.header {
+    margin-bottom: 10px;
+
+
+
+    &__inner {
+        position: relative;
+        background-color: $cNaby;
+        display: flex;
+        justify-content: space-between;
+        color: $cWhite;
+        height: 70px;
+        padding: 0px 30px 0px 30px;
+        z-index: 5;
+    }
+    
+    &__left {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        
+    }
+    
+    &__logo {
+        display: flex;
+        align-items: center;
+
+        & > img {
+            display: block;
+            margin: 0 5px 0 0px;
+            width: 3em;
+            height: 3em;
+        }
+
+        & > .cook {
+            font-family: 'Pacifico', cursive;
+            @extend .font-lg;
+        }
+    
+    }
+
+
+
+    &__li {
+        & > ul {
+            display: flex;
+            justify-content: space-around;
+            padding-left: 0px;
+
+
+            & > li {
+                @extend .font-md;
+                display: none;
+            }
+        } 
+    }
+
+    a {
+        color:$cWhite;
+    }
+    
+
+    &__right {
+        display: flex;
+        align-items: center;
+
+
+
+
+        & > .mobile-menu_button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            align-items: center;
+            padding: 10px 0px 0px 25px;
+            
+
+            & > span {
+                display: block;
+                width: 40px;
+                height: 3px;
+                background-color: $cWhite;
+                margin-bottom: 9px;
+
+                &:last-child {
+                    margin-bottom: none;
+                }
+            }
+        }
+
+        & > form {
+            margin: 0 auto;           
+        }
+
+        & > .header__search {
+            display: none;
+
+            & > button {
+                padding-top: 2px !important;
+            }
+        }
+        
+    }
+
+
+
+
+    &__bottom {
+        display: block;
+        background-color: $cWhite;
+        transition: all 0.5s;
+
+
+        & > ul {
+            list-style: none;
+            padding: 16px 10px 16px 10px;
+            margin: 0;
+            
+
+            & > li {
+                border-bottom: 1px solid $cGray;
+                margin-bottom: 10px;
+
+                &:nth-child(5) {
+                    border-bottom: none;
+                }
+
+                & > a {
+                    color: $cNaby;
+                }
+
+                & > form {
+                    margin-bottom: 10px;
+                }
+
+                & > .search {
+                    width: 100%;
+                    justify-content: left;
+                    align-items: center;
+                }
+            } 
+        }
+
+    }
+
+
+}
+
+.outview {
+    &.header__bottom {
+        height: 0 !important;
+        transform: translate(0px, -300px);
+        transition: all 0s;
+    }
+}
+
+
+footer {
+    .sitemap {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        background-color: $cNaby;
+        color: $cWhite;
+        max-width: 100%;
+     
+        &__container {
+            display: flex;   
+            flex-direction: column;
+            margin: 50px 0;           
+        }
+
+        &__li {
+            list-style-position: inside;
+            @extend .font-md;
+
+        }
+
+        a {
+            color: $cWhite;
+        }
+
+
+        &__subtitle {
+            text-align: center;
+            @extend .font-lr;
+        }
+
+        &__title {
+            @extend .font-lg;
+            text-align: center;
+        }
+    }
+}
+
+
+.form__card {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    border: 0.25px solid;
+    border-color: $cNaby;
+}
+
+
+
+// login.html
+.form {
+    width: 90%;
+    margin: 0 auto;
+    border: 2px solid $cNaby;
+    color: $cNaby;
+
+
+
+    &__content {
+        margin: 10px 10px 10px 10px;  
+        text-align: center;
+
+        & > p {
+            margin: 0 auto;
+        }
+    }
+
+    &__info {
+        & > ul {
+            padding: 0;
+
+            & > li {
+                list-style: none;
+            }
+        }
+    }
+
+    .errorlist {
+        padding: 0;
+
+        & > li {
+            list-style: none;
+        }
+        
+    }
+
+    &__info {
+        & > ul {
+            list-style: none;
+        }
+    }
+
+    .signup {
+        margin: 0 auto;
+        margin-bottom: 30px;
+
+        & > tbody {
+            display: inline-block;
+
+            & > tr {
+                & > .regist {
+                    text-align: end;
+                }
+                
+                & > th,
+                & > td {
+                    width: 100%;
+                    text-align: start;
+
+                }
+                
+            }
+
+        }
+    }
+
+    
+    
+    &__label {
+        // justify-content: space-between;
+        background-color: $cWhite;
+
+        
+    }
+
+    &__info {
+        display: inline-block;
+
+        & > li {
+            text-align: start;
+
+        }
+    }
+
+
+
+
+    .br::after {
+        content: "\A";
+        white-space: pre;
+    }
+
+    &__label {
+        margin-bottom: 5px;
+    }
+
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px white inset;
+    }
+    
+
+    input {
+        text-indent: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        @extend .input;
+    }
+    
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"] {
+        @extend .input-focus;
+    
+    }
+
+}
+
+
+.create {
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+    }       
+
+    textarea {
+        @extend .input;
+        resize: none;
+        height: 100px;
+        text-indent: 5px;
+    }
+
+    textarea:focus {
+        @extend .input-focus;
+        height: 100px;
+    }
+
+    select {
+        @extend .input;
+        width: 25%;
+        background-color: $cWhite;
+    }
+
+    select:focus {
+        @extend .input-focus;
+        width: 25%;
+    }
+
+    input[type="file" i] {
+        @extend .input;
+    }
+
+
+    
+    table {
+        margin: 0 auto;
+
+        & > tbody {
+            display: inline-block;
+    
+            & > tr {
+                & > th,
+                & > td {
+                    display: block;
+                    width: 100%;
+                    text-align: start;
+                }
+                
+            }
+
+            
+
+        }
+    }
+    
+}
+
+.mylist {
+    margin: 0 auto;
+
+    &__edit {
+        display: flex;
+        justify-content: flex-end;
+
+        & > form {
+            & > button {
+                margin: 0 10px 15px 0;
+            }
+        }
+    }
+
+    &__img {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+    a {
+        flex-basis: 30%;
+        padding-top: 30%;
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+    }
+    
+    // 擬似要素の作成　画像が左寄せになる　
+    &__img::after {
+        content: "";
+        display: block;
+        flex-basis: 30%;
+
+
+    }
+
+}
+
+.profile {
+    width: 95%;
+    margin: 0 auto;
+    border: 1px solid $cNaby;
+    margin-bottom: 20px;
+    color: $cNaby;
+
+    &__content {
+        margin: 10px 10px;
+    }
+
+    &__left {
+        width: 70px;
+        height: 70px;
+    }
+
+
+    &__center {
+
+        & > .title {
+            display: flex;
+            align-items: center;
+
+            & > .name {
+                @extend .a-navy;
+                @extend .font-lg;
+            }
+            
+        }
+    }
+
+    .follow__button,
+    .profile__edit__follow {
+        height: 20px;
+        & > a {
+            @extend .font-ssm;
+            padding: 6px 10px 6px 10px;
+            margin-left: 10px;
+        }
+    }
+
+    &__name {
+        @extend .font-lr;
+        margin-right: 50px;
+    }
+
+    &__edit {
+        @extend .font-md;
+    }
+
+    &__count {
+        & > ul {
+            display: flex;
+            justify-content: flex-start;
+            padding: 0px;
+
+            & > li {
+                display: block;
+                @extend .font-sm;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    &__right {
+        font-size: 10px;
+        text-align: end;
+    }
+
+    &__count {
+        @extend .a-navy;
+    }
+}
+
+.profile__img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.follow__button,
+.profile__edit__follow {
+    & > button {
+        flex-basis: 20%;
+        height: 25px;
+        border: 1.1px solid $cNaby;
+        cursor: pointer;
+        border-color: $cNaby;
+        color: $cNaby;
+        background-color: $cWhite;
+        transform: cursor;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $cNaby;
+            color: $cWhite;
+            border-color: $cNaby;
+
+            & > a {
+                color: $cWhite;
+            }
+    }
+    }
+    
+    .permit {
+        width: 120px;
+        background-color: $cGray;
+        border: $cGray;
+        
+        & > a  {
+            color: $cWhite;
+            text-decoration: none;
+        }
+
+        &:hover {
+            background-color: $cGray;
+            border: $cGray;
+    
+            & > a {
+                color: $cWhite;
+            }
+        }
+    }
+
+
+
+}
+
+// signup_detail.html
+.detail {
+    width: 95%;
+    margin: 0 auto;
+    border: 1px solid $cNaby;
+    color: $cNaby; 
+
+    &__content {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        & > .title {
+            color: $cNaby;
+            @extend .font-lr;
+        }
+
+        & > ul {
+            padding: 0;
+            list-style: none;
+
+            & > li {
+                margin: 0 30px 0 30px;
+                border: 1px solid $cNaby;
+                border-top-width: 0;
+                border-right-width: 0;
+                border-left-width: 0;
+                border-radius: 0;
+                padding: 10px 1.25em;
+
+
+            }
+        }
+    }
+}
+
+
+.recipe-detail {
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+    margin: 0 auto;
+    @extend .font-sm;
+    color: $cNaby;
+
+    
+    &__icon {
+        display: flex;
+        flex-direction: column;
+        width: 70px;
+        text-align: center;
+
+
+        & > img {
+            width: 70px;
+            height: 70px;
+        }
+
+        & > a {
+            color: $cNaby;
+            text-decoration: none;         
+        }
+    }
+
+
+    &__content {
+        width: 100%;
+        border: 1px solid $cNaby;
+        width: 100%;
+
+        & > .detail__img {
+            padding-top: 100%;
+            position: relative;
+            
+            & > img {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                object-fit: cover;
+                object-position: center;
+                position: absolute;
+            }
+        }
+        & > .objects {
+            margin: 10px 10px 10px 10px;
+
+            & > .title {
+                text-align: center;
+            }
+
+            & > .p {
+
+                & > p {
+                    border: 1px solid $cNaby;
+                    border-top-width: 0;
+                    border-right-width: 0;
+                    border-left-width: 0;
+                }
+                
+            }
+
+            & > .count {
+                margin-top: 10px;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+
+                & > .good {
+                    & > p {
+                        margin: 0;
+
+                        & > a {
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                & > .quote {
+                    & a {
+                        color: $cNaby;
+                    }
+                }
+            }  
+            
+            & > .url {
+                border: 1px solid $cNaby;
+                border-radius: 4px;
+
+                & > p {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    &__day {
+        text-align: end;
+        @extend .font-ssm;
+    }
+
+    &__button {
+        text-align: center;
+    }
+}
+
+// recipe_timeline_list.html
+.timeline {
+    &__content {
+        width: 90%;
+        padding: 10px;
+        border: 1px solid $cNaby;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+
+    &__inner {
+        width: 95%;
+        margin: 0 auto;
+        border: 1px solid $cNaby;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 10px;
+        color: $cNaby;
+        align-items: center;
+        @extend .font-sm;
+       
+        
+        & > .title {
+            flex-basis: 100%;
+            text-align: center;
+
+            a {
+                color: $cNaby;
+            }
+        }
+
+         & > .timeline-img {
+            flex-basis: 30%;  
+            padding-top: 30%; 
+            position: relative;
+        
+            & > img {
+                display: flex;
+                flex-grow: center;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                object-fit: cover;
+                object-position: center;
+                position: absolute;
+                overflow: hidden;
+            }          
+        }
+        
+        & > .objects {
+            flex-basis: 65%;
+            padding-left: 10px;
+
+            & > .count {
+                display: flex;
+                flex-direction: row;
+
+                & > .good {
+                    & > p {
+                        margin: 0 10px 0 0;
+
+                        & > a {
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                & > .quote {
+                    & > a {
+                        color: $cNaby;
+                    }
+                }
+    
+    
+            }
+        }
+
+        & > .time {
+            flex-basis: 100%;
+            text-align: end;
+            @extend .font-ssm;
+        }
+
+    }   
+}
+
+    .yellow {
+        background-color: $cRed;
+    }
+
+.selective_deletion {
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+
+    & > .checkbox {
+        flex-basis: 5%;
+        position: relative;
+
+        & > input {
+            transform:scale(1.5);
+            position: absolute;          
+        }
+    }
+
+    & > .timeline__content {
+        border: none;
+        flex-basis: 95%;
+        padding: 0;
+    }
+}
+
+.quote__recipe {
+    & > p {
+        color: $cNaby;
+        text-align: center;
+    }
+}
+
+.quote__recipe_margin {
+    margin-top: 50px;
+}
+
+// recipe_list.html 
+.selective_delection_button {
+    width: 204px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+
+// signup_follow_list.html
+.follow_list {
+    width: 350px;
+    margin: 0 auto;
+    border: solid 1px $cNaby;
+
+    &__content {        
+        display: flex;
+        flex-wrap: wrap;
+        margin: 10px;
+
+        & > .left {
+            flex-basis: 10%;
+        }
+
+        & > .right {
+            flex-basis: 68%;
+            text-align: center;
+            justify-content: space-around;      
+
+            & > .name {
+
+                & > a {
+                    text-decoration: none;
+                    color: $cNaby;
+                }
+            }
+
+            & > .right_button {
+                & > a {
+                    margin-top: 10px;
+            }
+
+            }
+        }
+    }
+}
+
+
+.sort {
+    display: flex;
+    justify-content: center;
+
+    &__content {
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        
+        & > .select {
+            & > select {
+                width: 90px;
+                height: 38px;
+                padding: .375rem 1.75rem .375rem .75rem;
+            }
+        }
+
+        & > .button {
+            & > button {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.pagination {
+    &__content {
+        & > ul {
+            display: flex;
+            justify-content: center;
+            padding: 0;
+
+            & > li {
+                list-style: none;
+                display: block;
+            }
+
+            & > .active {
+                & > .button {
+                    background-color: $cNaby;
+                    color: $cWhite;
+                }
+            }
+        }
+    }
+
+    .button {
+        padding: 0px 6px 0px 6px;
+        background-color: $cWhite;
+        color: $cNaby;
+    }
+}
+
+button,
+.button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid;
+    padding: 6px 25px 6px 25px;
+    text-decoration: none;
+    color: $cWhite;
+    background-color: $cNaby;
+    border-color: $cNaby;
+    border-radius: .25rem;
+    cursor: pointer;
+    @extend .font-sm;
+}
+
+.button:hover,
+button:hover {
+    color: $cNaby;
+    background-color: $cWhite;
+}
+
+.a_margin {
+    margin: 5px;
+}
+
+.alert {
+    width: 100%;
+    padding: .75rem 1.25rem;
+    position: relative;
+    margin-bottom: 10px;
+    box-sizing:border-box;
+    opacity: 1;
+    transition: opacity 0.8s;
+}
+
+.alert-success {
+    background-color: #b0c4de;
+    color: #778899;
+}
+
+.alert-warning {
+    background-color: #de9280;
+    color: #713e2e;
+}
+
+
+.alert-button {
+    background-color: transparent;
+    color: #713e2e;
+    border: transparent;
+    font-size: 25px;
+    display: inline-block;
+    padding: 0px;
+    position: absolute;
+    text-align: center;
+    width: 55px;
+    height: 50px;
+    padding: .75rem 1.25rem;
+    top: 0;
+    right: 0;
+    float: left;
+}
+
+.alert-button:hover {
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+
+.fade {
+    &.alert {
+        opacity: 0;
+    }
+}

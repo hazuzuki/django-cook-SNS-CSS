@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="global-container">
+    <div id="container">
+      <header class="header">
+        <div class="header__inner">
+          <div class="header__left">
+            <div class="header__logo">
+              <img src="{% static 'img/food-freebiesgallery.png' %}" alt="">
+              <a class="cook" href="{% url 'signup:top' %}">CooooK!</a>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="header__li">
+              <ul>
+                <li><a href= "{% url 'eat:timeline' %}" >今日のごはん</a></li>
+                <li><a href= "{% url 'eat:index' %}" >マイページ</a></li>
+                <li><a href="{% url 'eat:create' %}">新規作成</a></li>
+                <li><a href = "{% url 'signup:detail' %}">会員情報</a></li>
+                <li><a href = "{% url 'signup:logout' %}">ログアウト</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="header__right">
+            {% if "find" in request.path or "timeline" in request.path or "index" in request.path or "users" in request.path or "list" in request.path %}
+            {% if "find" in request.path %}
+             <form class="header__search search" action = "{% url 'eat:find' %}" method = "get" class="search">
+            {% elif "timeline" in request.path %}
+             <form class="header__search search" action = "{% url 'eat:timeline' %}" method = "get" class="search">
+            {% elif "index" in request.path %}
+             <form class="header__search search" action = "{% url 'eat:index' %}" method = "get" class="search">
+            {% elif "users" in request.path %}
+             <form class="header__search search" action = "{% url 'eat:users' users.id %}" method = "get" class="search">
+            {% elif "list" in request.path %}
+            <form class="header__search search" action = "{% url 'eat:good_users_list' users.id %}" method = "get" class="search">
+            {% else %}
+            {% endif %}
+            <input name="search" class="search__winddow" value = "{{ request.GET.search }}" placeholder="材料,料理名,種類"></input>
+            <!-- 並び替え設定時 -->
+            {% if request.GET.order %}
+            <input class="search__winddow" name = "order" value = "{{ request.GET.order }}" type = "hidden">
+            {% endif %}
+            <button class="search__button" type="submit">Search</button>
+          </form>         
+          {% endif %}
+
+           {% else %}
+           <div class="header__li">
+            <ul class="header__logout">
+              <li><a href = "{% url 'signup:new' %}">会員登録</a></li>
+              <li><a href = "{% url 'signup:login' %}">ログイン</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="header__right">
+          {% endif %}
+
+
+            <!-- <form class="search" method = "get" action = "{% url 'eat:find' %}">
+              <input name="search" class="search__winddow" value = "{{ request.GET.search }}" placeholder="材料,料理名,種類"></input>
+              <button class="search__button"　type="submit">Search</button>
+            </form> -->
+            <button class="mobile-menu_button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+        <div class="header__bottom outview">
+          <ul>
+          {% if user.is_authenticated %}
+          <li><a href= "{% url 'eat:timeline' %}" >今日のごはん</a></li>
+          <li><a href= "{% url 'eat:index' %}" >マイページ</a></li>
+          <li><a href="{% url 'eat:create' %}">新規作成</a></li>
+          <li><a href = "{% url 'signup:detail' %}">会員情報</a></li>
+          <li><a href = "{% url 'signup:logout' %}">ログアウト</a></li>
+          
+      
+          {% if "find" in request.path or "timeline" in request.path or "index" in request.path or "users" in request.path or "list" in request.path %}
+            <li>
+            {% if "find" in request.path %}
+             <form class= "search" action = "{% url 'eat:find' %}" method = "get" class="search">
+            {% elif "timeline" in request.path %}
+             <form class= "search" action = "{% url 'eat:timeline' %}" method = "get" class="search">
+            {% elif "index" in request.path %}
+             <form class= "search" action = "{% url 'eat:index' %}" method = "get" class="search">
+            {% elif "users" in request.path %}
+             <form class= "search" action = "{% url 'eat:users' users.id %}" method = "get" class="search">
+            {% elif "list" in request.path %}
+            <form class= "search" action = "{% url 'eat:good_users_list' users.id %}" method = "get" class="search">
+            {% else %}
+            {% endif %}
+            <input name="search" class="search__winddow" value = "{{ request.GET.search }}" placeholder="材料,料理名,種類"></input>
+            <!-- 並び替え設定時 -->
+            {% if request.GET.order %}
+            <input class="search__winddow" name = "order" value = "{{ request.GET.order }}" type = "hidden">
+            {% endif %}
+            <button class="search__button" type="submit">Search</button>
+          </form> 
+        </li>        
+          {% endif %}
+          {% else %}
+             <li><a href = "{% url 'signup:new' %}">会員登録</a></li>
+             <li><a href = "{% url 'signup:login' %}">ログイン</a></li>
+         {% endif %}
+        </ul>
+        </div>
+
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == "error" %}
+        <div class="alert alert-warning" role="alert">
+          {{ message }}
+        {% else %}
+        <div class="alert alert-success" role="alert">
+          {{ message }}
+        {% endif %}
+        <button type="button" class="alert-button close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </header>
+
+
+      
+      {% block body %}
+
+      {% endblock %}
+
+
+      <footer>
+        <div class="sitemap">
+          <div class="sitemap__container">
+          <div class="sitemap__title">Sitemap</div>
+          <div class="sitemap__content">
+            <div class="sitemap__subtitle">
+              <a href="{% url 'signup:top' %}">トップページ</a>
+            </div>
+            <ul>
+              <li class="sitemap__li">サイトの説明</li>
+            </ul>
+          </div>
+          <div class="sitemap__content">
+            <div class="sitemap__subtitle">
+              <a href="{% url 'eat:index' %}">マイページ</a>
+              </div>
+            <ul>
+              <li class="sitemap__li">
+                <a href="{% url 'eat:index' %}">レシピ一覧</a>
+              </li>
+              <li class="sitemap__li">
+                <a href="{% url 'eat:create' %}">新規作成</a>
+              </li>
+              <li class="sitemap__li">プロフィール</li>
+            </ul>
+          </div>
+          {% if user.is_authenticated %}
+          <div class="sitemap__content">
+            <div class="sitemap__subtitle">
+              <a href="{% url 'eat:timeline' %}">今日のごはん</a>
+            </div>
+          </div>
+          <div class="sitemap__content">
+            <div class="sitemap__subtitle">
+              <a href="{% url 'signup:detail' %}">会員情報変更</a>
+            </div>
+            <ul>
+              <li class="sitemap__li">
+                <a href="{% url 'signup:update' user.id %}">ユーザー情報変更</a>
+              </li>
+              <li class="sitemap__li">
+                <a href="{% url 'signup:changepass' %}">パスワード変更</a>
+              </li>
+              <li class="sitemap__li">
+                <a href="{% url 'signup:delete' user.id %}">退会の手続き</a>
+              </li>
+            </ul>
+          </div>
+          {% else %}
+          <div class="sitemap__content">
+            <div class="sitemap__subtitle">
+              <a href="{% url 'signup:new' %}">会員登録</a>
+            </div>
+          </div>
+          <div class="sitemap__content">
+            <div class="sitemap__subtitle">
+              <a href="{% url 'signup:password_reset' %}">パスワードをお忘れの方</a>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        </div>
+      </footer>
+
+
+    </div>
+  </div>
+
+  </div>
+
+
+
+  <script src="{% static 'scripts/main.js' %}"></script>
+</body>
+</html>
